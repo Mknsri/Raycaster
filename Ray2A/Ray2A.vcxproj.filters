@@ -18,5 +18,70 @@
     <ClCompile Include="Source.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="R_Raycaster.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_SDL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_Minimap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U_Debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="P_Player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E_Input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U_Boolean.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U_Constants.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D_Map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_Texture.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="R_Raycaster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P_Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U_Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Minimap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U_Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_SDL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D_Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U_Debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U_Boolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
