@@ -17,6 +17,7 @@
     <ClCompile Include="R_Minimap.c" />
     <ClCompile Include="R_Raycaster.c" />
     <ClCompile Include="R_SDL.c" />
+    <ClCompile Include="R_SkyFloor.c" />
     <ClCompile Include="R_Texture.c" />
     <ClCompile Include="Source.c" />
     <ClCompile Include="U_Boolean.c" />
@@ -30,6 +31,7 @@
     <ClInclude Include="R_Minimap.h" />
     <ClInclude Include="R_Raycaster.h" />
     <ClInclude Include="R_SDL.h" />
+    <ClInclude Include="R_SkyFloor.h" />
     <ClInclude Include="R_Texture.h" />
     <ClInclude Include="U_Boolean.h" />
     <ClInclude Include="U_Constants.h" />

@@ -16,15 +16,15 @@
 
 #include "U_Debug.h"
 
-typedef struct wallSegment {
+typedef struct WallSegment {
     double dist;
     double textureOffset;
     double height;
     int wallType;
-} wallSegment;
+} WallSegment;
 
 void DrawWalls(Player *p);
-void DrawWallSegment(wallSegment s, int segmentPosX);
-wallSegment CastSingleRay(Vector2 startPos, double angle);
+void DrawWallSegment(WallSegment s, int segmentPosX);
+WallSegment CastSingleRay(Vector2 startPos, double angle);
 
 #endif

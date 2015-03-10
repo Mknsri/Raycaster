@@ -48,6 +48,9 @@
     <ClCompile Include="R_Texture.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="R_SkyFloor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="R_Raycaster.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="R_Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_SkyFloor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

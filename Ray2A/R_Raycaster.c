@@ -5,7 +5,7 @@ void DrawWalls(Player* p) {
     double rayAngle = p->dir - PLAYER_FOV / 2;
 
     for (int rayScreenPosX = 0; rayScreenPosX < SCREEN_W; rayScreenPosX++) {
-        wallSegment currentSegment = { 0, 0 }; // Result of raycasting
+        WallSegment currentSegment = { 0, 0 }; // Result of raycasting
         rayAngle = fmod(rayAngle, TWOPI);
         if (rayAngle < 0) {
             rayAngle += TWOPI;
@@ -25,13 +25,13 @@ void DrawWalls(Player* p) {
            
 }
 // Cast single ray, returns distance to hit
-wallSegment CastSingleRay(Vector2 startPos, double angle) {
+WallSegment CastSingleRay(Vector2 startPos, double angle) {
     Vector2 gridPos = { 0, 0 }; // The grid were checking
     Vector2 stepSize = { 0, 0 };
     Vector2 stepDir = { 0, 0 };
     Vector2 hitGrid = { 0, 0 };
 
-    wallSegment tempSegment = { 0, 0 }; // Holds the distance and texture offset of wallsegment
+    WallSegment tempSegment = { 0, 0 }; // Holds the distance and texture offset of wallsegment
 
     boolean wallHit = false;
 
@@ -169,14 +169,15 @@ wallSegment CastSingleRay(Vector2 startPos, double angle) {
     return tempSegment;
 }
 
-void DrawWallSegment(wallSegment s, int segmentPosX) {
+void DrawWallSegment(WallSegment s, int segmentPosX) {
     
     int lineHeight = (int)round((1 / s.dist * DISTANCE_TO_PROJ_PLANE));
     int yClip = 0; // Where to clip the texture if over the screen limit
 
-    // calc lowest and highest pixel
-    int drawStart = -(lineHeight ) / 2 + SCREEN_H / 2;
-	drawStart -= lineHeight / s.height;
+    int drawStart = (SCREEN_H / 2 - lineHeight / 2);
+    int drawEnd = drawStart + lineHeight;
+    lineHeight = (int)(lineHeight * s.height);
+    drawStart = drawEnd - lineHeight;
 	if (drawStart < 0) {
 		yClip = abs(drawStart);
         drawStart = 0;

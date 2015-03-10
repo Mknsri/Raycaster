@@ -14,6 +14,7 @@
 #include "R_Raycaster.h"
 #include "R_Minimap.h"
 #include "R_Texture.h"
+#include "R_SkyFloor.h"
 
 
 
@@ -40,6 +41,8 @@ int main(int argc, char* args[]) {
             HandleInput(&e, &running, &player);
             ClearScreen();
 
+            DrawSky();
+            DrawFloor();
             DrawWalls(&player);
             DrawMinimap(&player);
 
