@@ -2,17 +2,17 @@
 
 void DrawWalls(Player* p) {
 
-    double rayAngle = p->dir - PLAYER_FOV / 2;
+    double rayAngle = p->dir - PLAYER_FOV / 2; // Starting angle;
 
     for (int rayScreenPosX = 0; rayScreenPosX < SCREEN_W; rayScreenPosX++) {
-        WallSegment currentSegment = { 0, 0 }; // Result of raycasting
+        WallSegment currentSegment; // Result of raycasting
+
+        // Clamp the rayangle between 0 <-> 2PI degrees
         rayAngle = fmod(rayAngle, TWOPI);
         if (rayAngle < 0) {
             rayAngle += TWOPI;
         }
-
-        SDL_SetRenderDrawColor(gRenderer, 255, 255, 0, 255);
-
+        
         currentSegment = CastSingleRay(p->pos, rayAngle);
 
         // Correct for fisheye
@@ -29,7 +29,7 @@ WallSegment CastSingleRay(Vector2 startPos, double angle) {
     Vector2 gridPos = { 0, 0 }; // The grid were checking
     Vector2 stepSize = { 0, 0 };
     Vector2 stepDir = { 0, 0 };
-    Vector2 hitGrid = { 0, 0 };
+    Vector2 hitGrid = { 0, 0 }; // Were the ray hit a wall
 
     WallSegment tempSegment = { 0, 0 }; // Holds the distance and texture offset of wallsegment
 
@@ -162,7 +162,7 @@ WallSegment CastSingleRay(Vector2 startPos, double angle) {
     tempSegment.dist = wallDistance;
 
    
-    tempSegment.wallType	= ( worldMap[(int)hitGrid.y][(int)hitGrid.x]) - 1;
+    tempSegment.wallType	= ( worldMap[(int)hitGrid.y][(int)hitGrid.x]) - 1; // Walltype, 0 is free space so fix the index here
     tempSegment.height		= (heightMap[(int)hitGrid.y][(int)hitGrid.x]);
 
     // Correct wall distance for fisheye
@@ -175,9 +175,12 @@ void DrawWallSegment(WallSegment s, int segmentPosX) {
     int yClip = 0; // Where to clip the texture if over the screen limit
 
     int drawStart = (SCREEN_H / 2 - lineHeight / 2);
+
+    // Bit of a silly way to calculate variable wall heights
     int drawEnd = drawStart + lineHeight;
     lineHeight = (int)(lineHeight * s.height);
     drawStart = drawEnd - lineHeight;
+
 	if (drawStart < 0) {
 		yClip = abs(drawStart);
         drawStart = 0;

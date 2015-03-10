@@ -7,20 +7,15 @@ const int MINIMAP_POINT_SIZE = 10;
 void DrawMinimap(Player* p) {
     // Draw map
     Vector2 miniMapCoords = { 0, 0 };
+
+    // Loop through the map array
     for (int x = 0; x < MAP_W; x++) {
         miniMapCoords.x = x;
         for (int y = 0; y < MAP_H; y++) {
             miniMapCoords.y = y;
             if (worldMap[y][x] > 0) {
 
-                SDL_SetRenderDrawColor(gRenderer, 50, 50, 50, 255);
-
-                SDL_RenderDrawLine(gRenderer, (int)GetMinimapCoords(miniMapCoords).x,
-                    (int)GetMinimapCoords(miniMapCoords).y, (int)GetMinimapCoords(miniMapCoords).x, MAP_H);
-                SDL_RenderDrawLine(gRenderer, (int)GetMinimapCoords(miniMapCoords).x,
-                    (int)GetMinimapCoords(miniMapCoords).y, MAP_W, (int)GetMinimapCoords(miniMapCoords).y);
-
-
+                // Draw a wallblock
                 SDL_SetRenderDrawColor(gRenderer, 127, 127, 127, 127);
 
                 SDL_Rect pointRect =
@@ -28,14 +23,9 @@ void DrawMinimap(Player* p) {
                 (int)GetMinimapCoords(miniMapCoords).y, // Y
                 MINIMAP_POINT_SIZE, MINIMAP_POINT_SIZE }; // Size
 
-
                 SDL_RenderFillRect(gRenderer, &pointRect);
             }
         }
-        SDL_SetRenderDrawColor(gRenderer, 50, 50, 50, 255);
-
-        SDL_RenderDrawLine(gRenderer, (int)GetMinimapCoords(miniMapCoords).x,
-            (int)GetMinimapCoords(miniMapCoords).y, MAP_W, (int)GetMinimapCoords(miniMapCoords).y);
     }
 
     // Draw player pos
@@ -49,7 +39,7 @@ void DrawMinimap(Player* p) {
 
     SDL_RenderFillRect(gRenderer, &playerPoint);
 
-    // Draw player direction
+    // Draw player directionline
     SDL_SetRenderDrawColor(gRenderer, 0, 255, 0, 127);
     double dirLenX = playerOnMinimap.x + (cos(playerMiniMapDir) * 10);
     double dirLenY = playerOnMinimap.y + (sin(playerMiniMapDir) * 10);
