@@ -30,15 +30,13 @@ Texture LoadTexture(char* path) {
     return tempTexture;
 }
 
-void RenderTexture(Texture* tx, int x, int y, SDL_Rect* clip, int testY) {
+void RenderTexture(Texture* tx, int x, int y, SDL_Rect* clip) {
     SDL_Rect renderQuad = { x, y, tx->w, tx->h };
 
     if (clip != NULL) {
         renderQuad.w = clip->w;
         renderQuad.h = clip->h;
     }
-
-    renderQuad.h = testY;
 
     SDL_RenderCopy(gRenderer, tx->tx, clip, &renderQuad);
 }

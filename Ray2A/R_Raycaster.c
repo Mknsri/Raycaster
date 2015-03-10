@@ -170,29 +170,30 @@ wallSegment CastSingleRay(Vector2 startPos, double angle) {
 
 void DrawWallSegment(wallSegment s, int segmentPosX) {
     
-    int lineHeight = (1 / s.dist * DISTANCE_TO_PROJ_PLANE);
+    int lineHeight = (int)round((1 / s.dist * DISTANCE_TO_PROJ_PLANE));
     int yClip = 0;
 
     // calc lowest and highest pixel
     int drawStart = -lineHeight / 2 + SCREEN_H / 2;
     if (drawStart < 0) {
-        yClip = abs(drawStart);
         drawStart = 0;
-        printf("%d\n", yClip);
-       // RenderAndStop();
     }
 
     int drawEnd = SCREEN_H / 2 + lineHeight / 2;
     if (drawEnd >= SCREEN_H) {
         drawEnd = SCREEN_H - 1;
     }
+
+    if (lineHeight > SCREEN_H) {
+        yClip = (lineHeight - SCREEN_H) / 2;
+    }
     
     // Only clip the texture in horizontal stripes
     SDL_Rect segmentClip = { 0, 0, 0, 0 };
-    segmentClip.x = (int)(128 * s.wallType) + (128 * s.textureOffset);
-    segmentClip.y = yClip;
+    segmentClip.x = (int)((128 * s.wallType) + (128 * s.textureOffset));
+    segmentClip.y = 0;
     segmentClip.w = 1;
     segmentClip.h = 128;
     
-    RenderWallStrip(&wallTexture.tx, segmentPosX, drawStart, lineHeight, &segmentClip);
+    RenderWallStrip(&wallTexture.tx, segmentPosX, drawStart - yClip, lineHeight, &segmentClip);
 }
