@@ -9,6 +9,7 @@
 void LoadMapData();
 
 extern int worldMap[MAP_W][MAP_H];
+extern int heightMap[MAP_W][MAP_H];
 extern Texture wallTexture;
 
 #endif

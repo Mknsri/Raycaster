@@ -162,7 +162,8 @@ wallSegment CastSingleRay(Vector2 startPos, double angle) {
     tempSegment.dist = wallDistance;
 
    
-    tempSegment.wallType = (worldMap[(int)hitGrid.y][(int)hitGrid.x]) - 1;
+    tempSegment.wallType	= ( worldMap[(int)hitGrid.y][(int)hitGrid.x]) - 1;
+    tempSegment.height		= (heightMap[(int)hitGrid.y][(int)hitGrid.x]);
 
     // Correct wall distance for fisheye
     return tempSegment;
@@ -171,23 +172,16 @@ wallSegment CastSingleRay(Vector2 startPos, double angle) {
 void DrawWallSegment(wallSegment s, int segmentPosX) {
     
     int lineHeight = (int)round((1 / s.dist * DISTANCE_TO_PROJ_PLANE));
-    int yClip = 0;
+    int yClip = 0; // Where to clip the texture if over the screen limit
 
     // calc lowest and highest pixel
-    int drawStart = -lineHeight / 2 + SCREEN_H / 2;
-    if (drawStart < 0) {
+    int drawStart = -(lineHeight ) / 2 + SCREEN_H / 2;
+	drawStart -= lineHeight / s.height;
+	if (drawStart < 0) {
+		yClip = abs(drawStart);
         drawStart = 0;
     }
 
-    int drawEnd = SCREEN_H / 2 + lineHeight / 2;
-    if (drawEnd >= SCREEN_H) {
-        drawEnd = SCREEN_H - 1;
-    }
-
-    if (lineHeight > SCREEN_H) {
-        yClip = (lineHeight - SCREEN_H) / 2;
-    }
-    
     // Only clip the texture in horizontal stripes
     SDL_Rect segmentClip = { 0, 0, 0, 0 };
     segmentClip.x = (int)((128 * s.wallType) + (128 * s.textureOffset));

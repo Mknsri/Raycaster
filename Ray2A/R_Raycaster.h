@@ -16,9 +16,10 @@
 
 #include "U_Debug.h"
 
-typedef struct wallSegment { // Holds distance and texture offset of wall
+typedef struct wallSegment {
     double dist;
     double textureOffset;
+    double height;
     int wallType;
 } wallSegment;
 
